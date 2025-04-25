@@ -35,4 +35,11 @@ public class CalculatorTests
         var calc = new Calculator();
         Assert.Throws<DivideByZeroException>(() => calc.Division(10, 0));
     }
+
+    [Test]
+    public void AdditionMustReturnCorrectValue()
+    {
+        var calc = new Calculator();
+        Assert.That(calc.Add(1, 2), Is.EqualTo(3), "Значения должны быть равны");
+    }
 }
