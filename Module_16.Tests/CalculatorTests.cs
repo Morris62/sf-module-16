@@ -19,21 +19,21 @@ public class CalculatorTests
     public void SubtractionMustReturnCorrectValue()
     {
         var calc = new Calculator();
-        Assert.That(calc.Subtraction(10, 9), Is.EqualTo(1), "Значения должны быть равны");
+        Assert.That(calc.Subtract(10, 9), Is.EqualTo(1), "Значения должны быть равны");
     }
 
     [Test]
     public void DivisionMustReturnCorrectValue()
     {
         var calc = new Calculator();
-        Assert.That(calc.Division(10, 5), Is.EqualTo(2), "Значения должны быть равны");
+        Assert.That(calc.Divide(10, 5), Is.EqualTo(2), "Значения должны быть равны");
     }
 
     [Test]
     public void DivisionMustReturnException()
     {
         var calc = new Calculator();
-        Assert.Throws<DivideByZeroException>(() => calc.Division(10, 0));
+        Assert.Throws<DivideByZeroException>(() => calc.Divide(10, 0));
     }
 
     [Test]
@@ -41,5 +41,14 @@ public class CalculatorTests
     {
         var calc = new Calculator();
         Assert.That(calc.Add(1, 2), Is.EqualTo(3), "Значения должны быть равны");
+    }
+
+    [Test]
+    public void OperationsMustReturnOverflowException()
+    {
+        var calc = new Calculator();
+        Assert.Throws<OverflowException>(() => calc.Add(int.MaxValue, 1));
+        Assert.Throws<OverflowException>(() => calc.Multiply(int.MaxValue, int.MinValue));
+        Assert.Throws<OverflowException>(() => calc.Subtract(int.MinValue, int.MaxValue));
     }
 }
